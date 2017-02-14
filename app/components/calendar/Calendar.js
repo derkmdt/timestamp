@@ -17,7 +17,7 @@ class Calendar
         this.weekdays = document.querySelector('calendar-weekdays');
 
         // TODO: Refactor?
-        document.querySelector('[data-show-preferences]').addEventListener(
+        document.querySelector('[is="calendar-preferences"]').addEventListener(
             'click', () => Electron.ipcRenderer.send('preferences.show')
         );
 
@@ -30,6 +30,8 @@ class Calendar
         CalendarEvent.on('goto.month', (e) => this.goToMonth(e));
         CalendarEvent.on('goto.year', (e) => this.goToYear(e));
         CalendarEvent.on('day.clicked', (e) => this.dayClicked(e));
+        CalendarEvent.on('goto.prevmonth', (e) => this.goToPrevMonth(e));
+        CalendarEvent.on('goto.nextmonth', (e) => this.goToNextMonth(e));
 
         // Draw for the first time
         this.update();
@@ -135,6 +137,20 @@ class Calendar
         Electron.ipcRenderer.send('preferences.get', 'clickingDateOpensCalendar');
 
         return this;
+    }
+
+    goToPrevMonth()
+    {
+        this.moment.subtract(1, 'months');
+
+        return this.update();
+    }
+
+    goToNextMonth()
+    {
+        this.moment.add(1, 'months');
+
+        return this.update();
     }
 }
 

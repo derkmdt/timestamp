@@ -2,20 +2,22 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=1 electron ./app --enable-logging",
-    "pack": "build --dir",
     "dist": "build",
-    "postinstall": "install-app-deps"
+    "postinstall": "install-app-deps",
   },
   "dependencies": {
     "applescript": "1.0.0",
+    "electron-context-menu": "^0.8.0",
     "got": "6.5.0",
     "marked": "0.3.6",
     "moment": "2.15.1",
     "semver": "5.3.0"
   },
   "devDependencies": {
+    "appdmg": "^0.4.5",
     "electron": "1.4.2",
-    "electron-builder": "7.9.0"
+    "electron-builder": "7.9.0",
+    "style-loader": "^0.13.1",
   },
   "build": {
     "appId": "com.mzdr.timestamp",

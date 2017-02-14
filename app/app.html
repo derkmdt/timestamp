@@ -19,7 +19,12 @@
         }
 
         // Update Moment.js
-        Moment.locale(Electron.remote.app.getLocale());
+        // Moment.locale(Electron.remote.app.getLocale());
+        Moment.locale('nl-NL');
+        Moment.updateLocale('nl', {
+            weekdaysShort : ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
+            monthsShort : Moment.monthsShort('-MMM-')
+        });
 
         // Create calendar view
         const calendar = new Calendar();

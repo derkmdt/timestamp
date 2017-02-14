@@ -13,23 +13,94 @@ calendar-view {
 [is="calendar-goto-today"] {
     background-color: transparent;
     border: 0;
-    color: var(--highlight-bg);
-    height: 3rem;
+    color: currentColor;
+    height: 1em;
     outline: 0;
     padding: 0;
-    /*position: absolute;*/
-    left: 0;
-    top: 0;
-    width: 3rem;
+    width: 1em;
+    cursor: pointer;
 }
 
-calendar-legend {
+[is="calendar-goto-today"]::before {
+    --dot-size: 0.5rem;
+
+    background: currentColor;
+    border-radius: 50%;
+    content: "";
     display: block;
-    font-size: 19px;
-    text-align: center;
+    height: var(--dot-size);
+    width: var(--dot-size);
+}
+
+
+calendar-legend {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+calender-goto {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.25rem;
+    padding: 0.5rem;
+}
+
+[is="calendar-prev-month"],
+[is="calendar-next-month"] {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 0;
+    outline: 0;
+    padding: inherit;
+}
+
+[is="calendar-prev-month"]::before,
+[is="calendar-next-month"]::before {
+    --arrow-size: 0.5rem;
+    --line-size: 1px;
+
+    border-color: currentColor;
+    border-style: solid;
+    border-width: var(--line-size) var(--line-size) 0 0;
+    content: "";
+    display: block;
+    height: var(--arrow-size);
+    width: var(--arrow-size);
+}
+
+[is="calendar-prev-month"]::before {
+    transform: rotate(-135deg);
+}
+
+[is="calendar-next-month"]::before {
+    transform: rotate(45deg);
+}
+
+[is="calendar-preferences"] {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+calendar-goto-year {
+  margin-left:.5em
+}
+
+calendar-month, calendar-year {
+  display: none;
+}
+
+calendar-month.-current, calendar-year.-current {
+    color: #000;
+    display: flex;
+    max-width: 50%;
 }
 
 calendar-weekdays {
+    text-align: center;
     box-shadow: 0 1px var(--silent-bg);
     color: var(--silent-fg);
     display: flex;
@@ -55,9 +126,9 @@ calendar-week {
 }
 
 calendar-week.-current {
-    background-color: var(--highlight-bg);
+    background-color: rgba(33, 149, 242, .2);
     border-radius: 3rem;
-    color: var(--highlight-fg);
+    color: var(--primary-fg);
 }
 
 calendar-day {
@@ -75,9 +146,9 @@ calendar-day.-today {
     --border-size: 0.25rem;
     --today-size: calc(var(--day-size) - var(--border-size));
 
-    background-color: var(--highlight-fg);
+    background-color: var(--highlight-bg);
     border-radius: 50%;
-    color: var(--primary-fg);
+    color: var(--primary-bg);
     height: var(--today-size);
     line-height: var(--today-size);
     margin: calc(var(--border-size) / 2);

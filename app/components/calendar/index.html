@@ -2,6 +2,8 @@
 <script src="./CalendarContent.js"></script>
 <script src="./CalendarDay.js"></script>
 <script src="./CalendarEvent.js"></script>
+<script src="./CalendarPrevMonth.js"></script>
+<script src="./CalendarNextMonth.js"></script>
 <script src="./CalendarGoToMonth.js"></script>
 <script src="./CalendarGoToToday.js"></script>
 <script src="./CalendarGoToYear.js"></script>
@@ -16,13 +18,17 @@
 
 <template>
     <calendar-view>
-        <button is="calendar-goto-today">T</button>
-        <button class="calendar-show-preferences" data-show-preferences></button>
+      <calender-goto>
+        <button is="calendar-prev-month"></button>
+        <button is="calendar-goto-today"></button>
+        <button is="calendar-next-month"></button>
+        <button is="calendar-preferences">&#9776;</button>
         <calendar-legend>
-            <calendar-goto-month></calendar-goto-month>
-            <calendar-goto-year></calendar-goto-year>
-            <calendar-weekdays></calendar-weekdays>
+          <calendar-goto-month></calendar-goto-month>
+          <calendar-goto-year></calendar-goto-year>
         </calendar-legend>
-        <calendar-content></calendar-content>
+      </calender-goto>
+      <calendar-weekdays></calendar-weekdays>
+      <calendar-content></calendar-content>
     </calendar-view>
 </template>

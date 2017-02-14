@@ -11,8 +11,9 @@ class Clock
     constructor()
     {
         // Set locale for Moment.js
-        Moment.locale(Electron.app.getLocale());
-
+        // Moment.locale(Electron.app.getLocale());
+        Moment.locale('nl-NL');
+        console.log(Moment.locale());
         // Default fallback format
         this.setFormat('HH:mm:ss');
 

@@ -4,6 +4,7 @@ const Tray = require('./tray');
 const Clock = require('./clock');
 const Preferences = require('./preferences');
 const Updater = require('./updater');
+const {app, BrowserWindow} = require('electron');
 
 class App
 {
@@ -142,15 +143,47 @@ class App
      */
     createWindow()
     {
+        require('electron-context-menu')({
+          labels: {
+            cut: 'Cut',
+            copy: 'Copy',
+            paste: 'Paste',
+            save: 'Save Image',
+            copyLink: 'Copy Link',
+            inspect: 'Inspect Element'
+          },
+          prepend: () => [
+          {}, {}, {}, {
+            type: 'separator'
+          }, {
+            type: 'separator'
+          }, {
+            type: 'separator'
+          }, {
+            type: 'separator'
+          }],
+          append: () => {}
+        });
+
         const win = new Electron.BrowserWindow({
             frame: false,
             resizable: false,
-            alwaysOnTop: true,
-            show: false
+            alwaysOnTop: false,
+            show: true
         });
 
         // Load the contents aka the view
         win.loadURL(`file://${__dirname}/app.html`);
+
+        // if (process.env.NODE_ENV === 'dev') {
+        //     win.show()
+        //     win.maximize()
+        //     win.setContentSize(1280,760)
+        //     // mb.window.setMovable(1)
+        //   }
+
+        // Open chrome devtools
+        win.webContents.openDevTools({mode: 'detach'})
 
         // Register onBlur callback
         win.on('blur', () => this.onBlur());
@@ -206,7 +239,7 @@ class App
      */
     onBlur()
     {
-        this.hide();
+        // this.hide();
     }
 
     /**

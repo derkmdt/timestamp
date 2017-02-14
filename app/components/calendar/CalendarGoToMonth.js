@@ -21,7 +21,7 @@ class CalendarGoToMonth extends CustomElement
         // Clean up old content
         this.removeChildren();
 
-        Moment.monthsShort(true).forEach((month, index) => {
+        Moment.months(true).forEach((month, index) => {
             const el = document.createElement('calendar-month');
 
             el.setAttribute('number', index);

@@ -115,6 +115,7 @@ class Preferences
     {
         try {
             var data = Fs.readFileSync(this.storageFile, 'utf8')
+            console.log(data);
         } catch (e) {
 
             // It's probably the first time the app has been started,
