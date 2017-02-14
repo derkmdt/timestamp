@@ -32,6 +32,8 @@ class CalendarContent extends CustomElement
                     }
                 });
 
+                console.log(week);
+
                 this.appendChild(week);
             }
 
